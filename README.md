@@ -8,7 +8,7 @@
 
 ## Files
 
-### _printf.c
+### <a href="https://github.com/tunmight/printf/blob/master/_printf.c">_printf.c</a>
 This code defines two functions: `check_format` and `_printf`. `check_format` takes a string argument `format`, which represents a possible valid format specifier for printf. It returns a pointer to a function that matches the format specifier, or `NULL` if no matching function is found.
 
 The `check_format` function first initializes an array of structures called `p`. Each structure has two members: a string `t` representing a format specifier and a function pointer `f` that corresponds to the matching function.
