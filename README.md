@@ -8,6 +8,9 @@
 
 ## Files
 
+### <a href="https://github.com/tunmight/printf/blob/master/main.h">main.h</a>
+Header file
+
 ### <a href="https://github.com/tunmight/printf/blob/master/_printf.c">_printf.c</a>
 This code defines two functions: `check_format` and `_printf`. `check_format` takes a string argument `format`, which represents a possible valid format specifier for printf. It returns a pointer to a function that matches the format specifier, or `NULL` if no matching function is found.
 
@@ -19,5 +22,11 @@ The `_printf` function is a custom implementation of the `printf` function that 
 
 The function then iterates through each character in the `format` string. If the character is not a `%` symbol, it is printed using the `_putchar` function and `counter` is incremented. If the character is a `%` symbol, the function checks whether the next character is also a `%` symbol. If it is, the `%` symbol is printed and `counter` is incremented. If the next character is not a `%` symbol, the `check_format` function is called with a pointer to the next character in `format`. If a valid function pointer is returned, the function pointer is called with the variable argument list `ap`, and the value
 
+### <a href="https://github.com/tunmight/printf/blob/master/test/main.c">main.c</a>
+s code defines a `main` function that tests a custom implementation of the `printf` function, named `_printf`. 
 
+The code includes standard libraries `limits.h` and `stdio.h` as well as a header file `main.h`. The `main` function begins by declaring some variables: `len` and `len2` of type `int`, `ui` of type `unsigned int`, and `addr` of type `void *`.
 
+The `main` function then assigns values to these variables by calling `_printf`, `printf`, and by performing some type conversions. Finally, the function calls `_printf` and `printf` again with various format specifiers and arguments.
+
+The purpose of the program is to test the functionality of the `_printf` function and to compare its output to that of the standard `printf` function.
