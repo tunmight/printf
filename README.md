@@ -1,65 +1,23 @@
- - printf team project
+# Printf 
 
-Group Project:
+## Group Project
 
-0. I'm not going anywhere. You can print that wherever you want to. I'm here and I'm
- a Spur for life
-Write a function that produces output according to a format.
+### Collaborators:
+- <a href="https://github.com/Tunmight">Tunmight</a>
+- <a href="https://github.com/GreenyNg">The Graphical Greeny</a>
 
+## Files
 
-1. Education is when you read the fine print. Experience is what you get if you don'
-t
-Handle the following conversion specifiers:
+### _printf.c
+This code defines two functions: `check_format` and `_printf`. `check_format` takes a string argument `format`, which represents a possible valid format specifier for printf. It returns a pointer to a function that matches the format specifier, or `NULL` if no matching function is found.
 
-2. With a face like mine, I do better in print
-Handle the following custom conversion specifiers:
-Handle the following conversion specifier: p.
+The `check_format` function first initializes an array of structures called `p`. Each structure has two members: a string `t` representing a format specifier and a function pointer `f` that corresponds to the matching function.
 
-7. The big print gives and the small print takes away
-Handle the following flag characters for non-custom conversion specifiers:
+Next, the function iterates through the `p` array and compares each string `t` to the first character in the `format` string. If a match is found, the corresponding function pointer `f` is returned.
 
-8. Sarcasm is lost in print
-Handle the following length modifiers for non-custom conversion specifiers:
+The `_printf` function is a custom implementation of the `printf` function that takes a variable number of arguments. It first initializes a variable argument list `ap` using the `va_start` macro, and initializes a variable `counter` to keep track of the number of characters printed.
 
-l
-h
-Conversion specifiers to handle: d, i, u, o, x, X
-
-9. Print some money and give it to us for the rain forests
-Handle the field width for non-custom conversion specifiers.
-
-10. The negative is the equivalent of the composer's score, and the print the perfor
-mance
-Handle the precision for non-custom conversion specifiers.
-
-11. It's depressing when you're still around and your albums are out of print
-Handle the 0 flag character for non-custom conversion specifiers.
-
-12. Every time that I wanted to give up, if I saw an interesting textile, print what
- ever, suddenly I would see a collection
-Handle the - flag character for non-custom conversion specifiers.
-
-13. Print is the sharpest and the strongest weapon of our party
-Handle the following custom conversion specifier:
-
-14. The flood of print has turned reading into a process of gulping rather than savo
-ring
-Handle the following custom conversion specifier:
-
-15. *
-All the above options work well together.
+The function then iterates through each character in the `format` string. If the character is not a `%` symbol, it is printed using the `_putchar` function and `counter` is incremented. If the character is a `%` symbol, the function checks whether the next character is also a `%` symbol. If it is, the `%` symbol is printed and `counter` is incremented. If the next character is not a `%` symbol, the `check_format` function is called with a pointer to the next character in `format`. If a valid function pointer is returned, the function pointer is called with the variable argument list `ap`, and the value
 
 
-
-
-3. What one has not experienced, one will never understand in print
-Handle the following conversion specifiers:
-
-4. Nothing in fine print is ever good news
-Use a local buffer of 1024 chars in order to call write as little as possible.
-
-5. My weakness is wearing too much leopard print
-Handle the following custom conversion specifier:
-
-6. How is the world ruled and led to war? Diplomats lie to journalists and believe t
 hese lies when they see them in print                                    i
