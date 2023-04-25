@@ -1,121 +1,85 @@
 #include "main.h"
-
-
-void print_buffer(char buffer[], int *buff_ind);
-
+#include <stdarg.h>
 
 /**
-
- * _printf - Printf function
-
- * @format: format.
-
- * Return: Printed chars.
-
+ * check_format - checks if there is a valid format specifier
+ * @format: possible valid format specifier
+ * Return: pointer to valid function or NULL
  */
-
-int _printf(const char *format, ...)
-
+int (*check_format(const char *format))(va_list)
 {
+	int i = 0;
+	print_t p[] = {
+		{"c", print_c},
+		{"s", print_c},
+		{"d", print_c},
+		{"i", print_c},
+		{"b", print_c},
+		{"u", print_c},
+		{"o", print_c},
+		{"x", print_c},
+		{"X", print_c},
+		{"p", print_c},
+		{"S", print_c},
+		{"r", print_c},
+		{"R", print_c},
+		{NULL, NULL}
+	};
 
-        int i, printed = 0, printed_chars = 0;
-
-        int flags, width, precision, size, buff_ind = 0;
-
-        va_list list;
-
-        char buffer[BUFF_SIZE];
-
-
-        if (format == NULL)
-
-                return (-1);
-
-
-        va_start(list, format);
-
-
-        for (i = 0; format && format[i] != '\0'; i++)
-
-        {
-
-                if (format[i] != '%')
-
-                {
-
-                        buffer[buff_ind++] = format[i];
-
-                        if (buff_ind == BUFF_SIZE)
-
-                                print_buffer(buffer, &buff_ind);
-
-                        /* write(1, &format[i], 1);*/
-
-                        printed_chars++;
-
-                }
-
-                else
-
-                {
-
-                        print_buffer(buffer, &buff_ind);
-
-                        flags = get_flags(format, &i);
-
-                        width = get_width(format, &i, list);
-
-                        precision = get_precision(format, &i, list);
-
-                        size = get_size(format, &i);
-
-                        ++i;
-
-                        printed = handle_print(format, &i, list, buffer,
-
-                                flags, width, precision, size);
-
-                        if (printed == -1)
-
-                                return (-1);
-
-                        printed_chars += printed;
-
-                }
-
-        }
-
-
-        print_buffer(buffer, &buff_ind);
-
-
-        va_end(list);
-
-
-        return (printed_chars);
-
+	for (; p[i].t != NULL; i++)
+	{
+		if (*(p[i].t) == *format)
+			break;
+	}
+	return (p[i].f);
 }
 
-
 /**
-
- * print_buffer - Prints the contents of the buffer if it exist
-
- * @buffer: Array of chars
-
- * @buff_ind: Index at which to add next char, represents the length.
-
+ * _printf - function for format printing
+ * @format: list of arguments to printing
+ * Return: Number of characters to printing
  */
-
-void print_buffer(char buffer[], int *buff_ind)
-
+int _printf(const char *format, ...)
 {
+	va_list ap;
+	int (*f)(va_list);
+	unsigned int i = 0, counter = 0;
 
-        if (*buff_ind > 0)
+	if (format == NULL)
+		return (-1);
 
-                write(1, &buffer[0], *buff_ind);
-
-
-        *buff_ind = 0;
+	va_start(ap, format);
+	while (format && format[i])
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]);
+			counter++;
+			i++;
+			continue;
+		}
+		else
+		{
+			if (format[i + 1] == '%')
+			{
+				_putchar('%');
+				counter++;
+				i += 2;
+				continue;
+			}
+			else
+			{
+				f = check_format(&format[i + 1]);
+				if (f == NULL)
+					return (-1);
+				i += 2;
+				counter += f(ap);
+				continue;
+			}
+		}
+		i++;
+	}
+	va_end(ap);
+	return (counter);
 
 }
