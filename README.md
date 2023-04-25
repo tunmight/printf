@@ -23,7 +23,7 @@ The `_printf` function is a custom implementation of the `printf` function that 
 The function then iterates through each character in the `format` string. If the character is not a `%` symbol, it is printed using the `_putchar` function and `counter` is incremented. If the character is a `%` symbol, the function checks whether the next character is also a `%` symbol. If it is, the `%` symbol is printed and `counter` is incremented. If the next character is not a `%` symbol, the `check_format` function is called with a pointer to the next character in `format`. If a valid function pointer is returned, the function pointer is called with the variable argument list `ap`, and the value
 
 ### <a href="https://github.com/tunmight/printf/blob/master/test/main.c">main.c</a>
-s code defines a `main` function that tests a custom implementation of the `printf` function, named `_printf`. 
+This code defines a `main` function that tests a custom implementation of the `printf` function, named `_printf`. 
 
 The code includes standard libraries `limits.h` and `stdio.h` as well as a header file `main.h`. The `main` function begins by declaring some variables: `len` and `len2` of type `int`, `ui` of type `unsigned int`, and `addr` of type `void *`.
 
