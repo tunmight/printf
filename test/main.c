@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdio.h>
-#include "../main.h"
+#include "main.h"
 
 /**
  * main - Entry point
@@ -39,8 +39,13 @@ int main(void)
 	len2 = printf("Percent:[%%]\n");
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
-	_printf("Unknown:[%r]\n");
+	_printf("Unknown:[%r]\n", "hello");
 	printf("Unknown:[%r]\n");
+	_printf("Hello %r\n", "Hello");
+	printf("Hello %r\n", "Hello");
+	_printf("%S\n", "alx\nSchool");
+	printf("%S\n", "alx\nSchool");
+	_printf("%R\n", "alx School");
+	printf("%R\n", "alx School");
 	return (0);
-
 }
